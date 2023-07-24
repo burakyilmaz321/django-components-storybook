@@ -6,6 +6,36 @@ Inspired by [View Component Storybook](https://jonspalmer.github.io/view_compone
 
 > **Warning:** This is a very early stage draft of the initial idea.
 
+**Usage**
+
+Add this to your url configuration:
+
+```python
+urlpatterns = [
+    # ...your existing url configuration
+    path("storybook/components/", include("django_components_storybook.urls")),
+]
+```
+
+Initialize Storybook:
+
+```bash
+npx storybook@latest init -t server
+```
+
+Add the following configuration to ``.storybook/preview.js``
+
+```javascript
+const preview = {
+  parameters: {
+    // ...existing configuration
+    server: {
+      url: `http://localhost:8000/storybook/components`,
+    },
+  },
+};
+```
+
 **Roadmap**
 
 - Handle slots
